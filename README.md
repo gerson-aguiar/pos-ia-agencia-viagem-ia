@@ -7,6 +7,40 @@
 
 <img width="914" height="535" alt="Captura de tela 2026-03-05 235335" src="https://github.com/user-attachments/assets/64f7cfc1-0b45-484b-9d8b-61db780ddc99" />
 
+```bash
+➜ curl -X POST -H "Content-Type: text/plain" -d "Tem viagem para Amazonas? Me de detalhes." http://localhost:8080/travel
+### Pacote Aventura Amazônia
+O pacote Aventura Amazônia é uma viagem de 7 dias e 6 noites com foco em atividades na selva como a focagem noturna de jacarés, caminhada na selva, e visita a comunidades ribeirinhas. O preço deste pacote é R$ 4.500,00 por pessoa. Em caso de cancelamento, você terá reembolso de 80% dentro de 30 dias de antecedência.
+
+### Pacote Tesouros do Egito
+O pacote Tesouros do Egito é uma viagem de 10 dias e 9 noites com atividades como visita às pirâmides de Gizé, cruzeiro no Nilo, e tour pelo Museu do Cairo. O preço deste pacote é R$ 12.800,00 por pessoa. Em caso de cancelação, você terá reembolso de 50% dentro de 30 dias de antecedência.%                                                                                                       
+~ took 1m 3.4s …
+➜ curl -X POST -H "Content-Type: text/plain" -d "Tem viagem para Amazonas? Me de detalhes." http://localhost:8080/travel
+O Pacote Aventura Amazônia é um pacote turístico de sete dias e seis noites, que inclui atividades como focagem noturna de jacarés, caminhada na selva e visita a comunidades ribeirinhas. O preço do pacote é R$ 4.500,00 por pessoa e a política de cancelação permite um reembolso de 80% com trinta dias de antecedência.
+
+Já o Pacote Tesouros do Egito é um pacote turístico de dez dias e nove noites, que inclui atividades como visita às pirâmides de Gizé, cruzeiro no Nilo e tour pelo Museu do Cairo. O preço do pacote é R$ 12.800,00 por pessoa e a política de cancelação permite um reembolso de 50% com trinta dias de antecedência.%                                                                                 
+~ took 47.5s …
+➜ curl -X POST -H "Content-Type: text/plain" -d "Tem viagem para Amazonas? Me de detalhes." http://localhost:8080/travel
+### Pacote Aventura Amazônia
+* Duração: 7 dias e 6 noites.
+* Atividades: Focagem noturna de jacarés, caminhada na selva, visita a comunidades ribeirinhas.
+* Política de cancelação: Reembolso de 80% com 30 dias de antecedência.
+* Preço: R$ 4.500,00 por pessoa.%                                                                                                  
+  ~ took 24.0s …
+  ➜ curl -X POST -H "Content-Type: text/plain" -d "Tem viagem para Amazonas? Me de detalhes." http://localhost:8080/travel
+
+Obrigado! Eu entendi. O Pacote Aventura Amazônia tem uma duração de 7 dias e 6 noites, com atividades como focagem noturna de jacarés, caminhada na selva e visita a comunidades ribeirinhas. O preço deste pacote é R$ 4.500,00 por pessoa e a política de cancelação oferece um reembolso de 80% com antecedência de 30 dias.
+Já o Pacote Tesouros do Egito tem uma duração de 10 dias e 9 noites, com atividades como visita às pirâmides de Gizé, cruzeiro no Nilo e tour pelo Museu do Cairo. O preço deste pacote é R$ 12.800,00 por pessoa e a política de cancelação oferece um reembolso de 50% com antecedência de 30 dias.
+Isso é tudo que estou capaz de informar neste momento. Se você tem mais questões ou precisa de mais detalhes, por favor, não hesite a perguntar!%                                                                                                                     
+~ took 47.2s …
+➜ curl -X POST -H "Content-Type: text/plain" -d "Tem viagem para Amazonas? Me de detalhes." http://localhost:8080/travel
+O Pacote Aventura Amazônia durará 7 dias e 6 noites, durante este tempo você terá a oportunidade de participar de atividades como focagem noturna de jacarés, caminhada na selva e visita à comunidades ribeirinhas. Se você precisar cancelar seu pacote pode fazer isso com antecedência de 30 dias, receberá um reembolso de 80%. O custo deste pacote é R$ 4.500,00 por pessoa.
+
+Já o Pacote Tesouros do Egito durará 10 dias e 9 noites. Você terá a chance de visitar as pirâmides de Gizé, fazer cruzeiro no Nilo e participar de uma tour pelo Museu do Cairo. Se você precisa cancelar seu pacote pode fazer isso com antecedência de 30 dias, receberá um reembolso de 50%. O custo deste pacote é R$ 12.800,00 por pessoa.
+
+Espero que esteja claro! Se precisar mais informação ou tem alguma dúvida não heite em perguntar.%                                 
+~ took 50.0s …
+```
 
 curl:
 ```shell
