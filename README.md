@@ -1,3 +1,13 @@
+
+<img width="1900" height="781" alt="Captura de tela 2026-03-05 235256" src="https://github.com/user-attachments/assets/290bcc6f-e643-486c-b90c-57bf5ca6fd7d" />
+
+
+<img width="1905" height="787" alt="Captura de tela 2026-03-05 235247" src="https://github.com/user-attachments/assets/3e448a2f-a5da-4596-8b24-7c4b20544ffe" />
+
+
+<img width="914" height="535" alt="Captura de tela 2026-03-05 235335" src="https://github.com/user-attachments/assets/64f7cfc1-0b45-484b-9d8b-61db780ddc99" />
+
+
 curl:
 ```shell
  curl -X POST -H "Content-Type: text/plain" -d "Estou planejando uma viagem para o Japao. Qual a melhor epoca do ano para visitar e por que? Responsa em portugues." http://localhost:8080/travel 
