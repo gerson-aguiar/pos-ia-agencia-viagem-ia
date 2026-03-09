@@ -52,6 +52,8 @@ curl:
 
 Assistente inteligente de agência de viagens construído com Quarkus e LangChain4j. Utiliza RAG (Retrieval-Augmented Generation) para responder perguntas sobre pacotes turísticos baseado em documentação interna.
 
+> **📘 Migração para Spring Boot**: Consulte o [guia de migração para Spring Boot 3.5.x + Java 25](springboot/readme.md)
+
 ## Tecnologias
 
 - **Quarkus 3.32.1** - Framework Java reativo
