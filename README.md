@@ -61,6 +61,68 @@ Assistente inteligente de agência de viagens construído com Quarkus e LangChai
 - **Java 17**
 - **Gradle**
 
+## Detalhes Técnicos
+
+### Framework e Runtime
+
+**Quarkus 3.32.1**
+- Framework Java nativo para Kubernetes otimizado para GraalVM e HotSpot
+- Startup ultrarrápido e baixo consumo de memória
+- Hot reload em modo desenvolvimento
+- Suporte nativo a programação reativa e imperativa
+
+### Dependências Principais
+
+**quarkus-rest**
+- Implementação Jakarta REST (JAX-RS) usando Vert.x
+- Processamento em tempo de build para melhor performance
+- Suporte a endpoints REST síncronos e assíncronos
+
+**quarkus-arc**
+- Container CDI (Contexts and Dependency Injection) do Quarkus
+- Injeção de dependências em tempo de build
+- Gerenciamento de ciclo de vida de beans
+
+**quarkus-langchain4j-ollama**
+- Integração entre Quarkus e LangChain4j para Ollama
+- Cliente HTTP otimizado para comunicação com servidor Ollama
+- Suporte a streaming de respostas
+- Configuração declarativa via application.properties
+
+**quarkus-langchain4j-easy-rag**
+- Sistema RAG (Retrieval-Augmented Generation) simplificado
+- Indexação automática de documentos em formato Markdown, PDF, TXT
+- Embedding e busca vetorial para recuperação de contexto
+- Integração transparente com o modelo de linguagem
+
+### Modelo de IA
+
+**Mistral 7B Instruct (Q4_0)**
+- Modelo de linguagem com 7 bilhões de parâmetros
+- Versão quantizada Q4_0 (4-bit) para otimização de memória
+- Especializado em seguir instruções (instruct-tuned)
+- Execução local via Ollama sem necessidade de API externa
+- Suporte a português e múltiplos idiomas
+
+### Arquitetura RAG
+
+**Pipeline de Processamento**
+1. **Ingestão**: Documentos em `src/main/resources/rag/` são carregados na inicialização
+2. **Chunking**: Textos divididos em segmentos menores para melhor recuperação
+3. **Embedding**: Conversão de texto em vetores numéricos
+4. **Indexação**: Armazenamento em índice vetorial para busca semântica
+5. **Retrieval**: Busca dos chunks mais relevantes baseado na pergunta do usuário
+6. **Augmentation**: Contexto recuperado é injetado no prompt do LLM
+7. **Generation**: Modelo gera resposta usando o contexto fornecido
+
+### Build e Empacotamento
+
+**Gradle 9.3.1**
+- Sistema de build com cache incremental
+- Suporte a compilação nativa com GraalVM
+- Geração de uber-jar ou jar modular
+- Integração com Quarkus Dev Mode
+
 ## Arquitetura
 
 O projeto implementa um chatbot que:
