@@ -1,4 +1,3 @@
-
 <img width="1900" height="781" alt="Captura de tela 2026-03-05 235256" src="https://github.com/user-attachments/assets/290bcc6f-e643-486c-b90c-57bf5ca6fd7d" />
 
 
@@ -13,7 +12,7 @@
 O pacote Aventura Amazônia é uma viagem de 7 dias e 6 noites com foco em atividades na selva como a focagem noturna de jacarés, caminhada na selva, e visita a comunidades ribeirinhas. O preço deste pacote é R$ 4.500,00 por pessoa. Em caso de cancelamento, você terá reembolso de 80% dentro de 30 dias de antecedência.
 
 ### Pacote Tesouros do Egito
-O pacote Tesouros do Egito é uma viagem de 10 dias e 9 noites com atividades como visita às pirâmides de Gizé, cruzeiro no Nilo, e tour pelo Museu do Cairo. O preço deste pacote é R$ 12.800,00 por pessoa. Em caso de cancelação, você terá reembolso de 50% dentro de 30 dias de antecedência.%                                                                                                       
+O pacote Tesouros do Egito é uma viagem de 10 dias e 9 noites com atividades como visita às pirâmides de Gizé, cruzeiro no Nilo, e tour pelo Museu do Cairo. O preço deste pacote é R$ 12.800,00 por pessoa. Em caso de cancelamento, você terá reembolso de 50% dentro de 30 dias de antecedência.%                                                                                                       
 ~ took 1m 3.4s …
 ➜ curl -X POST -H "Content-Type: text/plain" -d "Tem viagem para Amazonas? Me de detalhes." http://localhost:8080/travel
 O Pacote Aventura Amazônia é um pacote turístico de sete dias e seis noites, que inclui atividades como focagem noturna de jacarés, caminhada na selva e visita a comunidades ribeirinhas. O preço do pacote é R$ 4.500,00 por pessoa e a política de cancelação permite um reembolso de 80% com trinta dias de antecedência.
@@ -51,68 +50,234 @@ curl:
 
 # agencia-viagem-ai
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Assistente inteligente de agência de viagens construído com Quarkus e LangChain4j. Utiliza RAG (Retrieval-Augmented Generation) para responder perguntas sobre pacotes turísticos baseado em documentação interna.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+## Tecnologias
 
-## Running the application in dev mode
+- **Quarkus 3.32.1** - Framework Java reativo
+- **LangChain4j** - Integração com modelos de linguagem
+- **Ollama** - Servidor local de LLM (Mistral 7B)
+- **Easy RAG** - Sistema de busca em documentos
+- **Java 17**
+- **Gradle**
 
-You can run your application in dev mode that enables live coding using:
+## Arquitetura
 
-```shell script
+O projeto implementa um chatbot que:
+1. Recebe perguntas via API REST
+2. Busca contexto relevante nos documentos (RAG)
+3. Gera respostas personalizadas usando IA
+4. Retorna informações sobre pacotes turísticos
+
+### Componentes
+
+- **TravelAgentResource**: Endpoint REST `/travel` que aceita perguntas em texto plano
+- **TravelAgentAssistant**: Interface anotada com `@RegisterAiService` para processamento de IA
+- **Base de conhecimento**: Arquivos em `src/main/resources/rag/` com informações dos pacotes
+
+## Pré-requisitos
+
+- Java 17+
+- Gradle
+- Ollama instalado e rodando
+
+## Configuração do Ollama
+
+### 1. Instalar o Ollama
+
+```bash
+# Linux
+curl -fsSL https://ollama.com/install.sh | sh
+
+# macOS
+brew install ollama
+
+# Windows
+# Baixe o instalador em https://ollama.com/download
+```
+
+### 2. Iniciar o servidor Ollama
+
+```bash
+ollama serve
+```
+
+### 3. Baixar o modelo Mistral
+
+```bash
+ollama pull mistral:7b-instruct-q4_0
+```
+
+### 4. Verificar se o modelo está disponível
+
+```bash
+ollama list
+```
+
+## Como Executar
+
+### 1. Clonar o repositório
+
+```bash
+git clone <url-do-repositorio>
+cd agencia-viagem-ai
+```
+
+### 2. Executar em modo desenvolvimento
+
+```bash
 ./gradlew quarkusDev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+A aplicação estará disponível em `http://localhost:8080`
 
-## Packaging and running the application
+> **Nota:** O Quarkus Dev UI está disponível em `http://localhost:8080/q/dev/`
 
-The application can be packaged using:
+### 3. Testar a API
 
-```shell script
+```bash
+curl -X POST -H "Content-Type: text/plain" \
+  -d "Tem viagem para Amazonas? Me dê detalhes." \
+  http://localhost:8080/travel
+```
+
+Outros exemplos:
+
+```bash
+# Perguntar sobre pacotes disponíveis
+curl -X POST -H "Content-Type: text/plain" \
+  -d "Quais pacotes de viagem vocês oferecem?" \
+  http://localhost:8080/travel
+
+# Perguntar sobre política de cancelamento
+curl -X POST -H "Content-Type: text/plain" \
+  -d "Qual a política de cancelamento do pacote Egito?" \
+  http://localhost:8080/travel
+```
+
+## Pacotes Disponíveis
+
+### Pacote Aventura Amazônia
+- **Duração**: 7 dias e 6 noites
+- **Atividades**: Focagem noturna de jacarés, caminhada na selva, visita a comunidades ribeirinhas
+- **Preço**: R$ 4.500,00 por pessoa
+- **Cancelamento**: Reembolso de 80% com 30 dias de antecedência
+
+### Pacote Tesouros do Egito
+- **Duração**: 10 dias e 9 noites
+- **Atividades**: Visita às pirâmides de Gizé, cruzeiro no Nilo, tour pelo Museu do Cairo
+- **Preço**: R$ 12.800,00 por pessoa
+- **Cancelamento**: Reembolso de 50% com 30 dias de antecedência
+
+## Configuração
+
+As configurações estão em `src/main/resources/application.properties`:
+
+```properties
+# URL do Ollama
+quarkus.langchain4j.ollama.base-url=http://localhost:11434
+
+# Modelo a ser utilizado
+quarkus.langchain4j.ollama.chat-model.model-id=mistral:7b-instruct-q4_0
+
+# Timeout para respostas
+quarkus.langchain4j.ollama.timeout=600s
+
+# Diretório com documentos para RAG
+quarkus.langchain4j.easy-rag.path=src/main/resources/rag
+```
+
+## Adicionando Novos Pacotes
+
+Para adicionar novos pacotes turísticos:
+
+1. Edite o arquivo `src/main/resources/rag/pacotes-viagem.md`
+2. Adicione as informações no formato Markdown
+3. Reinicie a aplicação (ou aguarde o hot reload em dev mode)
+
+Exemplo:
+
+```markdown
+### Pacote Aventura na Patagônia
+* Duração: 5 dias e 4 noites.
+* Atividades: Trekking em geleiras, observação de fauna, passeio de barco.
+* Política de cancelamento: Reembolso de 70% com 30 dias de antecedência.
+* Preço: R$ 6.800,00 por pessoa.
+```
+
+## Build e Deploy
+
+### Gerar JAR executável
+
+```bash
 ./gradlew build
+java -jar build/quarkus-app/quarkus-run.jar
 ```
 
-It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
+### Gerar uber-jar
 
-The application is now runnable using `java -jar build/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
+```bash
 ./gradlew build -Dquarkus.package.jar.type=uber-jar
+java -jar build/*-runner.jar
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
+### Gerar executável nativo
 
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
+```bash
+# Com GraalVM instalado
 ./gradlew build -Dquarkus.native.enabled=true
-```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
+# Usando container
 ./gradlew build -Dquarkus.native.enabled=true -Dquarkus.native.container-build=true
+
+# Executar
+./build/agencia-viagem-ai-1.0.0-SNAPSHOT-runner
 ```
 
-You can then execute your native executable with: `./build/agencia-viagem-ai-1.0.0-SNAPSHOT-runner`
+## Estrutura do Projeto
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/gradle-tooling>.
+```
+agencia-viagem-ai/
+├── src/main/java/dev/ia/
+│   ├── TravelAgentResource.java      # Endpoint REST
+│   └── TravelAgentAssistant.java     # Interface do assistente IA
+├── src/main/resources/
+│   ├── application.properties        # Configurações
+│   └── rag/
+│       └── pacotes-viagem.md        # Base de conhecimento
+├── build.gradle                      # Dependências
+└── README.md
+```
 
-## Related Guides
+## Troubleshooting
 
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- LangChain4j Ollama ([guide](https://docs.quarkiverse.io/quarkus-langchain4j/dev/guide-ollama.html)): Provides the basic integration of Ollama with LangChain4j
+### Ollama não está respondendo
 
-## Provided Code
+Verifique se o Ollama está rodando:
 
-### REST
+```bash
+curl http://localhost:11434/api/tags
+```
 
-Easily start your REST Web Services
+### Modelo não encontrado
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+Certifique-se de que o modelo foi baixado:
+
+```bash
+ollama pull mistral:7b-instruct-q4_0
+```
+
+### Timeout nas respostas
+
+Aumente o timeout em `application.properties`:
+
+```properties
+quarkus.langchain4j.ollama.timeout=900s
+```
+
+## Recursos Adicionais
+
+- [Documentação do Quarkus](https://quarkus.io/)
+- [Quarkus LangChain4j](https://docs.quarkiverse.io/quarkus-langchain4j/dev/index.html)
+- [Ollama](https://ollama.com/)
+- [LangChain4j](https://docs.langchain4j.dev/)
